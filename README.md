@@ -4,44 +4,66 @@ This is a command line implementation of a ToDo List. It's inspired on the git w
 
 ### Examples
 
-#### Initialize category
+#### Create some categories
 
-2do new **today**
-2do new **this-week**
-2do new **later**
+``` bash
+
+2do new today
+2do new this-week
+2do new later
+
+```
 
 #### Add a task into a category
-{% codeblock  lang=bash %}
+
+``` bash
 2do @ today "Finish the read me section of 2do."
 2do @ today "Plan the whole interface to be geekie friendly"
 2do @ this-week "Revisit the whole interface to double check"
 2do @ later "Implement it all"
 2do @ later "Release the Kraken"
-{%endcodeblock%}
+
+```
 
 #### List all the category's tasks
 
+``` bash
 2do list today
+
+```
 
 It will display the tasks added to **today** category. By default it prints at most 5 tasks.
 
+``` bash
 --- 2 tasks todo today ---
 
   [ ] Finish the read me section of 2do.
   [ ] Plan the whole interface to be geekie friendly
 
+```
+
 You can change the max task value:
 
+``` bash
 2do list today -10
+
+```
 
 Or if you want to see all the tasks:
 
+``` bash
 2do list today -all
+
+```
 
 ### List tasks from all categories
 
+``` bash
 2do list
 
+```
+
+``` bash
 --- 2 tasks todo today ---
 
   [ ] Finish the read me section of 2do.
@@ -55,16 +77,24 @@ Or if you want to see all the tasks:
 
   [ ] Implement it all
   [ ] Release the Kraken
+  
+```
 
 #### Select next task to work on
 
+``` bash
 2do next-from today
+
+```
 
 It will retrieve the first open task from category **today**.
 
+``` bash
 --- 2do next from today ---
 
   Finish the read me section of 2do.
+  
+```
 
 In case no category is specified it will be displayed the first open task found from the first to the lastest add category.
 Which means it will look on today category for an open task if finds, will display on screen else it will look on the next category.
@@ -78,20 +108,31 @@ Given you have the task hash it is possible to set a status to it:
 
 Setting a task as **on progress**
 
+``` bash
 2do task start {hash}
+
+```
 
 Setting a task as **done**
 
+``` bash
 2do done task {hash}
+
+```
 
 Resetting a task as **open**
 
+``` bash
 2do task opened {hash}
+```
 
 As you set the status to your tasks it will change the output of the **2do list** to something like: 
 
+``` bash
 2do list
+```
 
+``` bash
 --- 2 tasks todo today ---
 
   [√] Finish the read me section of 2do.
@@ -105,6 +146,7 @@ As you set the status to your tasks it will change the output of the **2do list*
 
   [ ] Implement it all
   [ ] Release the Kraken
+```
 
 #### Stash tasks
 
@@ -112,13 +154,16 @@ Once you accumulate tasks you may want to exclude them or maybe  stash them so i
 
 To stash a single task:
 
+``` bash
 2do stash {hash}
+```
 
 or to a group of tasks:
 
+``` bash
 2do stash done tasks from today
-
 2do stash on progress tasks from this-week
+```
 
 Then those tasks won't show anymore, until of course, you execute a recover.
 
@@ -128,11 +173,14 @@ Recover will bring back the stashed tasks.
 
 To recover a single task:
 
+``` bash
 2do recover {hash}
-
+```
 Or to recover multiple tasks:
 
+``` bash
 2do recover open tasks from later
+```
 
 For **stash** and **recover** when no category is specified the changes will be applied to all categories.
 
@@ -140,12 +188,15 @@ For **stash** and **recover** when no category is specified the changes will be 
 
 To remove forever!
 
+``` bash
 2do remove task {hash}
+```
 
 Annnnd it's gone.
 
 #### Remove a category
 
+``` bash
 2do remove category today
-
+```
 Annnnd it's gone.
