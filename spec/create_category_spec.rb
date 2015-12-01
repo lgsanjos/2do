@@ -6,15 +6,15 @@ describe CreateCategory do
     category1 = CreateCategory.new("Today")
     category2 = CreateCategory.new("Today")
 
-    category1.should_not eql category2
+    expect(category1).not_to eq category2
 
-    category1.name.should eql 'Today'
-    category1.to_s.should eql category2.to_s
+    expect(category1.name).to eq 'Today'
+    expect(category1.to_s).to eq category2.to_s
   end
 
   it 'should persist the categories' do
     fake_repo = double('repository')
-    fake_repo.should_receive('persist').with('category', 'next-week')
+    allow(fake_repo).to receive('persist')
 
     cat = CreateCategory.new('next-week')
     cat.persist(fake_repo)
